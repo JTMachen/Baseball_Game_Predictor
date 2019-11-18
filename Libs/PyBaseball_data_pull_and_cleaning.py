@@ -30,8 +30,9 @@ def get_batting_data(start_date, end_date):
 def clean_batting_data(df):
     """ Takes a dataframe pulled from the PyBaseball API using the get_batting_data() function located in this
         library.  Will return a dataframe that has dropped unneeded columns and cleaned up other columns for
-        feature selection in a machine learning program. The columns on years before 2017 have different names
-        and this function will not work for them.  There is not consistency in the dataframes before 2017.
+        feature selection in a machine learning program. The columns on years before 2018 have different names
+        and this function will not work for them.  There is not consistency in the dataframes before 2018. The function
+        has to be modified slightly for 2016 and 2017.
     """
     df.drop(columns = ['Age','#days', 'BA', 'OBP', 'SLG', 'OPS'], inplace = True)
     df = df.rename(columns = {'\xa0': 'VH'})  
@@ -67,7 +68,8 @@ def clean_pitching_data(df):
     """ Takes a dataframe pulled from the PyBaseball API using the get_pitching_data() function located in this
         library.  Will return a dataframe that has dropped unneeded columns and cleaned up other columns for
         feature selection in a machine learning program. The columns on years before 2018 have different names
-        and this function will not work for them.  There is not consistency in the dataframes before 2018.
+        and this function will not work for them.  There is not consistency in the dataframes before 2018. The function
+        has to be modified slightly for 2016 and 2017.
     """
     df.drop(columns = ['Age','#days', 'W', 'L', 'SV', 'GSc'], inplace = True)
     df = df.rename(columns = {'\xa0': 'VH'})  

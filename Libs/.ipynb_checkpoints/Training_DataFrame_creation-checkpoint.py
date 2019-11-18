@@ -67,7 +67,7 @@ def df_for_feature_selection(odds_df, batting_df, pitching_df, look_back):
         dataframe represents one game with the cumulative stats, odds, and winner between the 2 teams."""
     
     # Use helper function to get schedule with odds
-    odds_df_with_lookback = odds_df[odds_df.index[0] + timedelta(look_back): batting_data_df.index[-1]]
+    odds_df_with_lookback = odds_df[odds_df.index[0] + timedelta(look_back): batting_df.index[-1]]
     schedule_odds_df = make_schedule_with_odds(odds_df_with_lookback)
     
     # Use helper function to get all stats for lookback period by team
@@ -96,6 +96,5 @@ def df_for_feature_selection(odds_df, batting_df, pitching_df, look_back):
         pitching_games_visitor = pitching_games_visitor.add_prefix('Visitor_Pitching')
         total_line = pd.concat([hitting_games_home,hitting_games_visitor, pitching_games_home, pitching_games_visitor], axis = 1)
         total_df = total_df.append(total_line)
-        print(i)
     stats_odds_df = pd.concat([schedule_odds_df,total_df], axis = 1 )
     return stats_odds_df
